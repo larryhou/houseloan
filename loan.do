@@ -50,7 +50,7 @@ forvalues yn = 1/30 {
 	line f1 f2 pr, xsize(16) ysize(9)
 	xmtick(##10, grid glw(*.5))
 	ymtick(##5 , grid glw(*.5)) ylabel(,format(%4.2f))
-	legend(ring(0) pos(5) region(c(none)) symx(*.5))
+	legend(ring(0) pos(5) region(c(none)) symx(*.5)) xlabel(,grid)
 	lc(red black) lw(*1.5)
 	title("贷款周期(`yn'年)", ring(0))
 	xtitle("")
