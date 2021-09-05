@@ -81,6 +81,35 @@ forvalues s = 1/10 {
 	graph export rapidcal_p`=`s'*10'.pdf, replace
 }
 
+forvalues yn = 1/30 {
+	clear
+	set obs 1000
+	generate yr = _n/100/100
+	generate pr = yr * 100
+	generate r = yr / 12
+	scalar n = `yn'*12
+	generate f1 = ((1+r)^n-1)/(r*(1+r)^n)
+	generate f2 = f1/n
+	label variable f1 "回本周期数"
+	label variable f2 "回本周期比"
+	format f1 %5.3f
+	format f2 %5.3f
+	#delimit ;
+	line f2 pr, xsize(16) ysize(9)
+	xmtick(##10, grid glw(*.5))
+	ymtick(##5 , grid glw(*.5)) ylabel(,format(%4.1f))
+	legend(ring(0) pos(5) region(c(none)) symx(*.5)) xlabel(,grid)
+	lc(red black) lw(*1.5)
+	title("贷款周期(`yn'年)", ring(0))
+	xtitle("")
+	;
+	#delimit cr
+	graph export "payback_yn`yn'.pdf", replace
+}
+
+
+
+
 
 
 
