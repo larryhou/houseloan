@@ -59,6 +59,28 @@ forvalues yn = 1/30 {
 	graph export "loan_yn`yn'.pdf", replace
 }
 
+clear
+set obs 1000
+generate r = 0.1/_n
+generate pr = r * 100
+generate nr = 100 * r * ln(2)/ln(1+r)
+#delimit ;
+line nr pr, xsize(16) ysize(9)
+xlabel(,format(%4.1f) grid)
+ylabel(,format(%4.0f) grid)
+ymtick(##5 , grid glw(*.5))
+xmtick(##10, grid glw(*.5))
+xtitle("收益率/pct")
+ytitle("翻倍积(periods×rate/pct)")
+title("贷款周期(`yn'年)", ring(0))
+title("收益翻倍速算图", ring(0))
+lc(black) lw(*1.5)
+;
+#delimit cr
+graph export rapidcal.pdf, replace
+
+
+
 
 
 
