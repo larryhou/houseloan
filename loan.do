@@ -88,19 +88,20 @@ forvalues yn = 1/30 {
 	generate pr = yr * 100
 	generate r = yr / 12
 	scalar n = `yn'*12
-	generate f1 = ((1+r)^n-1)/(r*(1+r)^n)
-	generate f2 = f1/n
-	label variable f1 "回本周期数"
-	label variable f2 "回本周期比"
+	generate f1 = ((1+r)^n-1)/(r*(1+r)^n)/n
+	generate f2 = ((r+2+2*n*r)-sqrt((r+2+2*n*r)^2-8*n*r))/(2*r)/n
+	label variable f1 "等额本息"
+	label variable f2 "等额本金"
 	format f1 %5.3f
 	format f2 %5.3f
 	#delimit ;
-	line f2 pr, xsize(16) ysize(9)
+	line f1 f2 pr, xsize(16) ysize(9)
 	xmtick(##10, grid glw(*.5))
-	ymtick(##5 , grid glw(*.5)) ylabel(,format(%4.1f))
-	legend(ring(0) pos(5) region(c(none)) symx(*.5)) xlabel(,grid)
+	ymtick(##5 , grid glw(*.5)) ylabel(,format(%4.2f))
+	legend(ring(0) pos(7) region(c(none)) symx(*.5)) xlabel(,grid)
 	lc(red black) lw(*1.5)
 	title("贷款周期(`yn'年)", ring(0))
+	ytitle("回本周期比")
 	xtitle("")
 	;
 	#delimit cr
