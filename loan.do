@@ -60,19 +60,19 @@ set scheme morden
 forvalues x = -2(1)2 {
 	local r = rate + 0.5 * `x'
 	local t = strofreal(`r'*10, "%2.0f")
-	line P0*_`t' P1*_`t' n, lw(*.5 ...)              ///
+	line P0*_`t' P1*_`t' n, lw(*.5 ...)            ///
 		xlabel(0(60)360) xmtick(##5,grid glw(*.5)) ///
 		ylabel(0(0.1)1.) ymtick(##2,grid glw(*.5)) ///
 		title("(`r')剩余本金对比", ring(0)) xtitle("")
 	graph export principal_`t'.pdf, replace
 		
-	line I0*_`t' I1*_`t' n, lw(*.5 ...)               ///
+	line I0*_`t' I1*_`t' n, lw(*.5 ...)             ///
 		xlabel(0(60)360) xmtick(##5,grid glw(*.5))  ///
 		ylabel(0(0.1).7) ymtick(##5,grid glw(*.5))  ///
 		title("(`r')贷款年限对利息的影响", ring(0)) xtitle("")
 	graph export interest_`t'.pdf, replace
 	
-	line T*_`t' n, lw(*.5 ...)                    ///
+	line T*_`t' n, lw(*.5 ...)                   ///
 	xlabel(0(60)360) xmtick(##6,grid glw(*.5))   ///
 	ymtick(##5,grid glw(*.5))  ///
 	title("(`r')等额等本对比", ring(0)) xtitle("")
