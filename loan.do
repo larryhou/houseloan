@@ -1,5 +1,5 @@
 capture scalar drop rate
-scalar rate=3.6
+scalar rate=3.3
 
 clear
 set obs 360
