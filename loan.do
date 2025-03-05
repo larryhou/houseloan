@@ -62,7 +62,7 @@ forvalues x = -2(1)2 {
 	local t = strofreal(`r'*10, "%2.0f")
 	line P0*_`t' P1*_`t' n, lw(*.5 ...)            ///
 		xlabel(0(60)360) xmtick(##5,grid glw(*.5)) ///
-		ylabel(0(0.1)1.) ymtick(##2,grid glw(*.5)) ///
+		ylabel(0(0.1)1.) ymtick(##5,grid glw(*.5)) ///
 		title("(`r')剩余本金对比", ring(0)) xtitle("")
 	graph export principal_`t'.pdf, replace
 		
@@ -75,7 +75,7 @@ forvalues x = -2(1)2 {
 	line T*_`t' n, lw(*.5 ...)                   ///
 	xlabel(0(60)360) xmtick(##6,grid glw(*.5))   ///
 	ymtick(##5,grid glw(*.5))  ///
-	title("(`r')等额等本对比", ring(0)) xtitle("")
+	title("(`r')等本息/等本金月付(首月)比率", ring(0)) xtitle("")
 	graph export diff_`t'.pdf, replace
 }
 
