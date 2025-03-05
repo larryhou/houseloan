@@ -98,11 +98,11 @@ line p0_* n if _n > 120, lw(*.5 ...) ///
 	ylabel(0.004(0.001)0.01) ymtick(##5,grid glw(*.5))     ///
 	xlabel(120(60)360) xmtick(##5, grid glw(*.5)) ///
 	title("(等本息)还款期数对月付的影响", ring(0)) xtitle("")
-graph export payment_0.pdf, replace
+graph export payment_`=rate'_0.pdf, replace as(pdf)
 	
 line p1_* n if _n > 120, lw(*.5 ...) ///
 	ylabel(0.005(0.001)0.012) ymtick(##5,grid glw(*.5))     ///
 	xlabel(120(60)360) xmtick(##5, grid glw(*.5)) ///
 	title("(等本金)(首月)还款期数对月付的影响", ring(0)) xtitle("")
-graph export payment_1.pdf, replace
+graph export payment_`=rate'_1.pdf, replace as(pdf)
 
